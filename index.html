@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oferta Streaming Mayo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #00d4ff;
+            --neon-pink: #ff2d95;
+            --neon-purple: #b829dd;
+            --neon-yellow: #ffd700;
+            --neon-green: #00ff88;
+            --dark-bg: #0a0e27;
+            --card-bg: rgba(10, 14, 39, 0.92);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            color: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 45, 149, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(184, 41, 221, 0.08) 0%, transparent 70%),
+                var(--dark-bg);
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .floating-icon {
+            position: fixed;
+            font-size: 2rem;
+            opacity: 0.12;
+            animation: float 6s ease-in-out infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .container {
+            max-width: 520px;
+            width: 100%;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .header-icons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        .header-icons span {
+            animation: bounce 2s infinite;
+        }
+
+        .header-icons span:nth-child(2) { animation-delay: 0.3s; }
+        .header-icons span:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .title {
+            font-size: 3rem;
+            line-height: 0.95;
+            font-weight: 900;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .title-line1 {
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px rgba(255,45,149,0.5), 0 0 40px rgba(255,45,149,0.3);
+        }
+
+        .title-line2 {
+            color: var(--neon-yellow);
+            text-shadow: 0 0 20px rgba(255,215,0,0.6), 0 0 40px rgba(255,215,0,0.3);
+        }
+
+        .title-line3 {
+            color: #ffffff;
+            font-style: normal;
+            font-size: 3.5rem;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(0,212,255,0.3);
+        }
+
+        /* Column headers */
+        .column-headers {
+            display: grid;
+            grid-template-columns: 50px 1fr 100px 100px;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding: 0 15px;
+        }
+
+        .col-header {
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        .col-header:nth-child(3) {
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px rgba(255,45,149,0.5);
+        }
+
+        .col-header:nth-child(4) {
+            color: var(--neon-yellow);
+            text-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+
+        /* Platform Cards */
+        .platforms-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+        }
+
+        .platform-card {
+            display: grid;
+            grid-template-columns: 50px 1fr 100px 100px;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 15px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            color: #ffffff;
+        }
+
+        .platform-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 16px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--card-color), transparent 60%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .platform-card:hover::before {
+            opacity: 1;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .platform-card.active {
+            grid-template-columns: 50px 1fr 100px 100px;
+            grid-template-rows: auto auto;
+            padding: 12px 15px;
+            gap: 8px;
+            cursor: default;
+            z-index: 10;
+            color: #ffffff;
+        }
+
+        .platform-card.active:hover {
+            transform: none;
+        }
+
+        .platform-card.active::before {
+            opacity: 1;
+            background: linear-gradient(135deg, var(--card-color), var(--card-color-secondary, var(--card-color)));
+        }
+
+        .platform-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .platform-card.active .platform-icon {
+            width: 42px;
+            height: 42px;
+            font-size: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .platform-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.3s ease;
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .platform-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #ffffff;
+            line-height: 1.2;
+            transition: font-size 0.3s ease;
+        }
+
+        .platform-card.active .platform-name {
+            font-size: 1rem;
+            color: #ffffff;
+        }
+
+        .platform-detail {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.85);
+            font-weight: 400;
+        }
+
+        .platform-card.active .platform-detail {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .price-box {
+            text-align: center;
+            padding: 8px 5px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .platform-card.active .price-box {
+            padding: 8px 5px;
+            font-size: 1rem;
+        }
+
+        .price-monthly {
+            background: rgba(255, 45, 149, 0.15);
+            border: 1px solid rgba(255, 45, 149, 0.4);
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px rgba(255,45,149,0.4);
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        .price-quarterly {
+            background: rgba(255, 215, 0, 0.12);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: var(--neon-yellow);
+            text-shadow: 0 0 10px rgba(255,215,0,0.4);
+            grid-column: 4;
+            grid-row: 1;
+        }
+
+        /* EXPANDED CONTENT */
+        .card-expanded {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.4s ease 0.1s,
+                        padding 0.4s ease;
+            padding: 0;
+            grid-column: 1 / -1;
+            grid-row: 2;
+            color: #ffffff;
+        }
+
+        .platform-card.active .card-expanded {
+            max-height: 500px;
+            opacity: 1;
+            padding-top: 12px;
+            color: #ffffff;
+        }
+
+        .expanded-content {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            color: #ffffff;
+        }
+
+        .expanded-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--card-color), transparent);
+            opacity: 0.5;
+            margin: 0 10px;
+        }
+
+        .expanded-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 0 5px;
+            color: #ffffff;
+        }
+
+        .expanded-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+            color: #ffffff;
+        }
+
+        .expanded-text {
+            flex: 1;
+            color: #ffffff;
+        }
+
+        .expanded-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            color: var(--card-color);
+            margin-bottom: 3px;
+            text-shadow: 0 0 8px var(--card-color-glow, var(--card-color));
+        }
+
+        .expanded-value {
+            font-size: 0.9rem;
+            color: #ffffff;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .expanded-value strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        /* Other cards when one is active */
+        .platforms-list.has-active .platform-card:not(.active) {
+            opacity: 0.4;
+            transform: scale(0.95);
+            pointer-events: none;
+            filter: blur(1px);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 50px;
+            background: linear-gradient(135deg, #00ff88, #00d4ff);
+            color: #0a0e27;
+            font-weight: 900;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            border-radius: 12px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            box-shadow: 0 0 30px rgba(0,255,136,0.4), 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0,255,136,0.6), 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .contact-info svg {
+            width: 32px;
+            height: 32px;
+            fill: #25d366;
+            filter: drop-shadow(0 0 10px rgba(37,211,102,0.5));
+        }
+
+        /* Platform specific colors */
+        .netflix-red { --card-color: #e50914; --card-color-secondary: #ff1744; --card-color-glow: rgba(229,9,20,0.6); background: linear-gradient(135deg, #e50914, #b20710); }
+        .netflix-red2 { --card-color: #e50914; --card-color-secondary: #ff1744; --card-color-glow: rgba(229,9,20,0.6); background: linear-gradient(135deg, #e50914, #b20710); }
+        .disney-blue { --card-color: #113ccf; --card-color-secondary: #00a8e1; --card-color-glow: rgba(17,60,207,0.6); background: linear-gradient(135deg, #113ccf, #0a2472); }
+        .universal-teal { --card-color: #00a8e1; --card-color-secondary: #00d4ff; --card-color-glow: rgba(0,168,225,0.6); background: linear-gradient(135deg, #00a8e1, #0077a3); }
+        .hbo-purple { --card-color: #8b5cf6; --card-color-secondary: #a78bfa; --card-color-glow: rgba(139,92,246,0.6); background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+        .youtube-red { --card-color: #ff0000; --card-color-secondary: #ff4444; --card-color-glow: rgba(255,0,0,0.6); background: linear-gradient(135deg, #ff0000, #cc0000); }
+        .prime-blue { --card-color: #00a8e1; --card-color-secondary: #00d4ff; --card-color-glow: rgba(0,168,225,0.6); background: linear-gradient(135deg, #00a8e1, #0077a3); }
+        .crunchyroll-orange { --card-color: #f47521; --card-color-secondary: #ff8c42; --card-color-glow: rgba(244,117,33,0.6); background: linear-gradient(135deg, #f47521, #d45a0a); }
+        .paramount-blue { --card-color: #0064ff; --card-color-secondary: #3385ff; --card-color-glow: rgba(0,100,255,0.6); background: linear-gradient(135deg, #0064ff, #0047b3); }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .title { font-size: 2.2rem; }
+            .platform-card,
+            .platform-card.active {
+                grid-template-columns: 40px 1fr 85px 85px;
+                padding: 10px;
+                gap: 6px;
+            }
+            .platform-icon,
+            .platform-card.active .platform-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1.2rem;
+            }
+            .platform-name,
+            .platform-card.active .platform-name {
+                font-size: 0.9rem;
+            }
+            .platform-detail,
+            .platform-card.active .platform-detail {
+                font-size: 0.7rem;
+            }
+            .price-box,
+            .platform-card.active .price-box {
+                font-size: 0.9rem;
+                padding: 6px 3px;
+            }
+            .cta-button { font-size: 1.1rem; padding: 12px 35px; }
+            .contact-info { font-size: 1.1rem; }
+            .expanded-value { font-size: 0.85rem; }
+            .column-headers { grid-template-columns: 40px 1fr 85px 85px; padding: 0 10px; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="stars" id="stars"></div>
+
+    <div class="floating-icon" style="top: 10%; left: 5%;">📺</div>
+    <div class="floating-icon" style="top: 20%; right: 8%; animation-delay: 1s;">🎬</div>
+    <div class="floating-icon" style="bottom: 30%; left: 8%; animation-delay: 2s;">🍿</div>
+    <div class="floating-icon" style="bottom: 15%; right: 5%; animation-delay: 0.5s;">🎭</div>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-icons">
+                <span>📱</span>
+                <span>📺</span>
+                <span>🎬</span>
+            </div>
+            <div class="title">
+                <div class="title-line1">OFERTA</div>
+                <div class="title-line2">STREAMING</div>
+                <div class="title-line3">MAYO</div>
+            </div>
+        </div>
+
+        <div class="column-headers">
+            <div></div>
+            <div></div>
+            <div class="col-header">Por Mes</div>
+            <div class="col-header">x 3 Meses</div>
+        </div>
+
+        <div class="platforms-list" id="platformsList">
+            <!-- Rendered by JS -->
+        </div>
+
+        <div class="cta-section">
+            <a href="https://wa.me/543735536700" class="cta-button" target="_blank">
+                ¡Consulta Ya!
+            </a>
+            <div class="contact-info">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span>+54 3735 536700</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════════════
+        // EDITAR DATOS AQUÍ — Modifica precios, descripciones y nombres de plan
+        // ═══════════════════════════════════════════════════════════════════════
+
+        const platformsData = [
+            {
+                id: 'netflix-tv',
+                name: 'Netflix',
+                detail: '4K (Smart TV)',
+                iconClass: 'netflix-red',
+                iconText: 'N',
+                monthlyPrice: '$16.500',
+                quarterlyPrice: '$47.000',
+                planName: 'Netflix Premium 4K',
+                planDescription: 'Plan más completo de Netflix. Incluye 4K UHD, HDR, Dolby Vision y Dolby Atmos.',
+                hasPin: true,
+                pinNote: 'Tu perfil es privado y está protegido con un PIN de acceso exclusivo. Solo vos podés entrar.'
+            },
+            {
+                id: 'netflix-mobile',
+                name: 'Netflix',
+                detail: '4K (Móvil/PC)',
+                iconClass: 'netflix-red2',
+                iconText: 'N',
+                monthlyPrice: '$9.500',
+                quarterlyPrice: '$27.000',
+                planName: 'Netflix Premium 4K',
+                planDescription: 'Plan más completo de Netflix. Incluye 4K UHD, HDR, Dolby Vision y Dolby Atmos.',
+                hasPin: true,
+                pinNote: 'Tu perfil es privado y está protegido con un PIN de acceso exclusivo. Solo vos podés entrar.'
+            },
+            {
+                id: 'disney',
+                name: 'Disney+',
+                detail: '(Premium)',
+                iconClass: 'disney-blue',
+                iconText: '✦',
+                monthlyPrice: '$7.000',
+                quarterlyPrice: '$20.000',
+                planName: 'Disney+ Premium',
+                planDescription: 'Plan sin anuncios con 4K UHD, HDR, Dolby Atmos y descargas en hasta 10 dispositivos.',
+                hasPin: true,
+                pinNote: 'Tu perfil es privado y está protegido con un PIN de acceso exclusivo. Solo vos podés entrar.'
+            },
+            {
+                id: 'universal',
+                name: 'Universal+',
+                detail: '',
+                iconClass: 'universal-teal',
+                iconText: 'U',
+                monthlyPrice: '$5.000',
+                quarterlyPrice: '$14.500',
+                planName: 'Universal+ Premium',
+                planDescription: 'Acceso completo al catálogo Universal con contenido exclusivo, películas y series originales.',
+                hasPin: true,
+                pinNote: 'Tu perfil es privado y está protegido con un PIN de acceso exclusivo. Solo vos podés entrar.'
+            },
+            {
+                id: 'hbo',
+                name: 'HBO Max',
+                detail: '',
+                iconClass: 'hbo-purple',
+                iconText: 'H',
+                monthlyPrice: '$4.500',
+                quarterlyPrice: '$13.000',
+                planName: 'HBO Max Ultimate (4K)',
+                planDescription: 'Plan Ultimate con 4K UHD, Dolby Atmos, descargas ilimitadas y sin publicidad.',
+                hasPin: true,
+                pinNote: 'Tu perfil es privado y está protegido con un PIN de acceso exclusivo. Solo vos podés entrar.'
+            },
+            {
+                id: 'youtube',
+                name: 'YouTube Premium',
+                detail: '',
+                iconClass: 'youtube-red',
+                iconText: '▶',
+                monthlyPrice: '$4.000',
+                quarterlyPrice: '$11.500',
+                planName: 'YouTube Premium Familiar',
+                planDescription: 'Sin anuncios, reproducción en segundo plano, descargas offline y acceso a YouTube Music.',
+                hasPin: false,
+                pinNote: 'Plan familiar. Accedés con tu propio correo y contraseña. No compartís cuenta con nadie.'
+            },
+            {
+                id: 'prime',
+                name: 'Prime Video',
+                detail: '',
+                iconClass: 'prime-blue',
+                iconText: 'P',
+                monthlyPrice: '$3.000',
+                quarterlyPrice: '$8.500',
+                planName: 'Prime Video Ultra',
+                planDescription: 'Plan Ultra con 4K UHD, HDR, Dolby Atmos, 5 streams simultáneos y sin publicidad.',
+                hasPin: true,
+                pinNote: 'Tu perfil es privado y está protegido con un PIN de acceso exclusivo. Solo vos podés entrar.'
+            },
+            {
+                id: 'crunchyroll',
+                name: 'Crunchyroll',
+                detail: '',
+                iconClass: 'crunchyroll-orange',
+                iconText: 'C',
+                monthlyPrice: '$2.500',
+                quarterlyPrice: '$7.000',
+                planName: 'Crunchyroll Mega Fan',
+                planDescription: 'Sin anuncios, acceso simultáneo en 4 dispositivos, descargas offline y acceso prioritario a nuevos episodios.',
+                hasPin: true,
+                pinNote: 'Tu perfil es privado y está protegido con un PIN de acceso exclusivo. Solo vos podés entrar.'
+            },
+            {
+                id: 'paramount',
+                name: 'Paramount+',
+                detail: '',
+                iconClass: 'paramount-blue',
+                iconText: '✦',
+                monthlyPrice: '$2.500',
+                quarterlyPrice: '$7.000',
+                planName: 'Paramount+ con SHOWTIME',
+                planDescription: 'Plan Premium con SHOWTIME incluido, 4K UHD, HDR10, Dolby Vision y descargas offline.',
+                hasPin: false,
+                pinNote: 'Cuenta compartida. Paramount+ no permite PIN por perfil, pero tu perfil es privado y solo vos lo usás.'
+            }
+        ];
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // FIN DE EDICIÓN DE DATOS
+        // ═══════════════════════════════════════════════════════════════════════
+
+        let activeCardId = null;
+
+        function getPinSection(platform) {
+            if (platform.hasPin) {
+                return `
+                    <div class="expanded-section">
+                        <div class="expanded-icon">🔒</div>
+                        <div class="expanded-text">
+                            <div class="expanded-label">Seguridad del Perfil</div>
+                            <div class="expanded-value">
+                                ${platform.pinNote}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                return `
+                    <div class="expanded-section">
+                        <div class="expanded-icon">👤</div>
+                        <div class="expanded-text">
+                            <div class="expanded-label">Acceso a la Cuenta</div>
+                            <div class="expanded-value">
+                                ${platform.pinNote}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function renderPlatforms() {
+            const container = document.getElementById('platformsList');
+            container.innerHTML = platformsData.map(platform => `
+                <div class="platform-card" data-id="${platform.id}" onclick="toggleCard('${platform.id}')">
+                    <div class="platform-icon ${platform.iconClass}">${platform.iconText}</div>
+                    <div class="platform-info">
+                        <div class="platform-name">${platform.name}</div>
+                        ${platform.detail ? `<div class="platform-detail">${platform.detail}</div>` : ''}
+                    </div>
+                    <div class="price-box price-monthly">${platform.monthlyPrice}</div>
+                    <div class="price-box price-quarterly">${platform.quarterlyPrice}</div>
+                    <div class="card-expanded">
+                        <div class="expanded-divider"></div>
+                        <div class="expanded-content">
+                            <div class="expanded-section">
+                                <div class="expanded-icon">🏆</div>
+                                <div class="expanded-text">
+                                    <div class="expanded-label">Plan Incluido</div>
+                                    <div class="expanded-value"><strong>${platform.planName}</strong></div>
+                                </div>
+                            </div>
+                            <div class="expanded-section">
+                                <div class="expanded-icon">📋</div>
+                                <div class="expanded-text">
+                                    <div class="expanded-label">Qué incluye</div>
+                                    <div class="expanded-value">${platform.planDescription}</div>
+                                </div>
+                            </div>
+                            ${platform.hasPin ? `
+                            <div class="expanded-section">
+                                <div class="expanded-icon">👤</div>
+                                <div class="expanded-text">
+                                    <div class="expanded-label">Tipo de Cuenta</div>
+                                    <div class="expanded-value">
+                                        <strong>Cuenta compartida</strong> — Vos accedés a un perfil privado dentro de una cuenta principal.
+                                    </div>
+                                </div>
+                            </div>
+                            ` : ''}
+                            ${getPinSection(platform)}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleCard(id) {
+            const container = document.getElementById('platformsList');
+            const allCards = container.querySelectorAll('.platform-card');
+
+            if (activeCardId === id) {
+                closeCard();
+                return;
+            }
+
+            allCards.forEach(card => card.classList.remove('active'));
+            container.classList.remove('has-active');
+
+            const targetCard = container.querySelector(`[data-id="${id}"]`);
+            if (targetCard) {
+                targetCard.classList.add('active');
+                container.classList.add('has-active');
+                activeCardId = id;
+
+                setTimeout(() => {
+                    const rect = targetCard.getBoundingClientRect();
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const cardTop = rect.top + scrollTop;
+                    const viewportHeight = window.innerHeight;
+                    const cardHeight = rect.height;
+                    const targetScroll = cardTop - (viewportHeight / 2) + (cardHeight / 2);
+
+                    window.scrollTo({
+                        top: Math.max(0, targetScroll),
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            }
+        }
+
+        function closeCard() {
+            const container = document.getElementById('platformsList');
+            const allCards = container.querySelectorAll('.platform-card');
+            allCards.forEach(card => card.classList.remove('active'));
+            container.classList.remove('has-active');
+            activeCardId = null;
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeCard();
+        });
+
+        function generateStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        renderPlatforms();
+        generateStars();
+    </script>
+</body>
+</html>
