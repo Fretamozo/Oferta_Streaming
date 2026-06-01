@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oferta Streaming Mayo</title>
+    <title>Oferta Streaming Junio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -265,6 +265,15 @@
             transition: all 0.4s ease;
             grid-column: 1;
             grid-row: 1;
+            overflow: hidden;
+            background: transparent !important;
+        }
+
+        .platform-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
         }
 
         .platform-card.active .platform-icon {
@@ -501,16 +510,16 @@
             color: #ffffff;
         }
 
-        /* Platform specific colors */
-        .netflix-red { --card-color: #e50914; --card-color-secondary: #ff1744; --card-color-glow: rgba(229,9,20,0.6); background: linear-gradient(135deg, #e50914, #b20710); }
-        .netflix-red2 { --card-color: #e50914; --card-color-secondary: #ff1744; --card-color-glow: rgba(229,9,20,0.6); background: linear-gradient(135deg, #e50914, #b20710); }
-        .disney-blue { --card-color: #113ccf; --card-color-secondary: #00a8e1; --card-color-glow: rgba(17,60,207,0.6); background: linear-gradient(135deg, #113ccf, #0a2472); }
-        .universal-teal { --card-color: #00a8e1; --card-color-secondary: #00d4ff; --card-color-glow: rgba(0,168,225,0.6); background: linear-gradient(135deg, #00a8e1, #0077a3); }
-        .hbo-purple { --card-color: #8b5cf6; --card-color-secondary: #a78bfa; --card-color-glow: rgba(139,92,246,0.6); background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-        .youtube-red { --card-color: #ff0000; --card-color-secondary: #ff4444; --card-color-glow: rgba(255,0,0,0.6); background: linear-gradient(135deg, #ff0000, #cc0000); }
-        .prime-blue { --card-color: #00a8e1; --card-color-secondary: #00d4ff; --card-color-glow: rgba(0,168,225,0.6); background: linear-gradient(135deg, #00a8e1, #0077a3); }
-        .crunchyroll-orange { --card-color: #f47521; --card-color-secondary: #ff8c42; --card-color-glow: rgba(244,117,33,0.6); background: linear-gradient(135deg, #f47521, #d45a0a); }
-        .paramount-blue { --card-color: #0064ff; --card-color-secondary: #3385ff; --card-color-glow: rgba(0,100,255,0.6); background: linear-gradient(135deg, #0064ff, #0047b3); }
+        /* Platform specific colors - solo para bordes y acentos */
+        .netflix-red { --card-color: #e50914; --card-color-secondary: #ff1744; --card-color-glow: rgba(229,9,20,0.6); }
+        .netflix-red2 { --card-color: #e50914; --card-color-secondary: #ff1744; --card-color-glow: rgba(229,9,20,0.6); }
+        .disney-blue { --card-color: #113ccf; --card-color-secondary: #00a8e1; --card-color-glow: rgba(17,60,207,0.6); }
+        .universal-teal { --card-color: #00a8e1; --card-color-secondary: #00d4ff; --card-color-glow: rgba(0,168,225,0.6); }
+        .hbo-purple { --card-color: #8b5cf6; --card-color-secondary: #a78bfa; --card-color-glow: rgba(139,92,246,0.6); }
+        .youtube-red { --card-color: #ff0000; --card-color-secondary: #ff4444; --card-color-glow: rgba(255,0,0,0.6); }
+        .prime-blue { --card-color: #00a8e1; --card-color-secondary: #00d4ff; --card-color-glow: rgba(0,168,225,0.6); }
+        .crunchyroll-orange { --card-color: #f47521; --card-color-secondary: #ff8c42; --card-color-glow: rgba(244,117,33,0.6); }
+        .paramount-blue { --card-color: #0064ff; --card-color-secondary: #3385ff; --card-color-glow: rgba(0,100,255,0.6); }
 
         /* Responsive */
         @media (max-width: 480px) {
@@ -567,7 +576,7 @@
             <div class="title">
                 <div class="title-line1">OFERTA</div>
                 <div class="title-line2">STREAMING</div>
-                <div class="title-line3">MAYO</div>
+                <div class="title-line3">JUNIO</div>
             </div>
         </div>
 
@@ -604,7 +613,7 @@
                 name: 'Netflix',
                 detail: '(Smart TV)',
                 iconClass: 'netflix-red',
-                iconText: 'N',
+                iconImage: 'assets/netflix.png',
                 monthlyPrice: '$16.500',
                 quarterlyPrice: '$47.000',
                 planName: 'Netflix Premium 4K',
@@ -617,7 +626,7 @@
                 name: 'Netflix',
                 detail: '(Móvil/PC)',
                 iconClass: 'netflix-red2',
-                iconText: 'N',
+                iconImage: 'assets/netflix.png',
                 monthlyPrice: '$9.500',
                 quarterlyPrice: '$27.000',
                 planName: 'Netflix Premium 4K',
@@ -630,7 +639,7 @@
                 name: 'Disney+',
                 detail: '',
                 iconClass: 'disney-blue',
-                iconText: '✦',
+                iconImage: 'assets/disney.png',
                 monthlyPrice: '$7.000',
                 quarterlyPrice: '$20.000',
                 planName: 'Disney+ Premium',
@@ -643,7 +652,7 @@
                 name: 'Universal+',
                 detail: '',
                 iconClass: 'universal-teal',
-                iconText: 'U',
+                iconImage: 'assets/universal.png',
                 monthlyPrice: '$5.000',
                 quarterlyPrice: '$14.500',
                 planName: 'Universal+ Premium',
@@ -656,7 +665,7 @@
                 name: 'HBO Max',
                 detail: '',
                 iconClass: 'hbo-purple',
-                iconText: 'H',
+                iconImage: 'assets/hbo.png',
                 monthlyPrice: '$4.500',
                 quarterlyPrice: '$13.000',
                 planName: 'HBO Max Platino (4K)',
@@ -669,7 +678,7 @@
                 name: 'YouTube Premium',
                 detail: '',
                 iconClass: 'youtube-red',
-                iconText: '▶',
+                iconImage: 'assets/youtube.png',
                 monthlyPrice: '$4.000',
                 quarterlyPrice: '$11.500',
                 planName: 'YouTube Premium',
@@ -678,11 +687,24 @@
                 pinNote: 'Adhesión a Plan familiar. Accedés con tu propio correo y contraseña. No compartís cuenta con nadie.'
             },
             {
+                id: 'crunchyroll',
+                name: 'Crunchyroll',
+                detail: '',
+                iconClass: 'crunchyroll-orange',
+                iconImage: 'assets/crunchyroll.png',
+                monthlyPrice: '$4.000',
+                quarterlyPrice: '$11.500',
+                planName: 'Crunchyroll Mega Fan',
+                planDescription: 'Sin anuncios, acceso simultáneo en 4 dispositivos, descargas offline y acceso prioritario a nuevos episodios.',
+                hasPin: true,
+                pinNote: 'Tu perfil es privado y está protegido con un PIN de acceso exclusivo. Solo vos podés entrar.'
+            },
+            {
                 id: 'prime',
                 name: 'Prime Video',
                 detail: '',
                 iconClass: 'prime-blue',
-                iconText: 'P',
+                iconImage: 'assets/prime.png',
                 monthlyPrice: '$3.000',
                 quarterlyPrice: '$8.500',
                 planName: 'Prime Video',
@@ -691,24 +713,11 @@
                 pinNote: 'Tu perfil es privado y está protegido con un PIN de acceso exclusivo. Solo vos podés entrar.'
             },
             {
-                id: 'crunchyroll',
-                name: 'Crunchyroll',
-                detail: '',
-                iconClass: 'crunchyroll-orange',
-                iconText: 'C',
-                monthlyPrice: '$2.500',
-                quarterlyPrice: '$7.000',
-                planName: 'Crunchyroll Mega Fan',
-                planDescription: 'Sin anuncios, acceso simultáneo en 4 dispositivos, descargas offline y acceso prioritario a nuevos episodios.',
-                hasPin: true,
-                pinNote: 'Tu perfil es privado y está protegido con un PIN de acceso exclusivo. Solo vos podés entrar.'
-            },
-            {
                 id: 'paramount',
                 name: 'Paramount+',
                 detail: '',
                 iconClass: 'paramount-blue',
-                iconText: '✦',
+                iconImage: 'assets/paramount.png',
                 monthlyPrice: '$2.500',
                 quarterlyPrice: '$7.000',
                 planName: 'Paramount+',
@@ -756,7 +765,9 @@
             const container = document.getElementById('platformsList');
             container.innerHTML = platformsData.map(platform => `
                 <div class="platform-card" data-id="${platform.id}" onclick="toggleCard('${platform.id}')">
-                    <div class="platform-icon ${platform.iconClass}">${platform.iconText}</div>
+                    <div class="platform-icon ${platform.iconClass}">
+                        <img src="${platform.iconImage}" alt="${platform.name}">
+                    </div>
                     <div class="platform-info">
                         <div class="platform-name">${platform.name}</div>
                         ${platform.detail ? `<div class="platform-detail">${platform.detail}</div>` : ''}
