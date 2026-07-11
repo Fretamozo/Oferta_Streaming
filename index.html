@@ -521,6 +521,7 @@
         .apple-black { --card-color: #100c1a; --card-color-secondary: #231f2e; --card-color-glow: rgba(18, 14, 27, 0.6); }
         .prime-blue { --card-color: #00a8e1; --card-color-secondary: #00d4ff; --card-color-glow: rgba(0,168,225,0.6); }
         .paramount-blue { --card-color: #0064ff; --card-color-secondary: #3385ff; --card-color-glow: rgba(0,100,255,0.6); }
+        .miotv-green { --card-color: #2ecc71; --card-color-secondary: #27ae60; --card-color-glow: rgba(46,204,113,0.6); }
 
         /* Responsive */
         @media (max-width: 480px) {
@@ -577,7 +578,7 @@
             <div class="title">
                 <div class="title-line1">OFERTA</div>
                 <div class="title-line2">STREAMING</div>
-                <div class="title-line3">JUNIO</div>
+                <div class="title-line3">JULIO</div>
             </div>
         </div>
 
@@ -667,8 +668,8 @@
                 detail: '',
                 iconClass: 'hbo-purple',
                 iconImage: 'assets/hbo.png',
-                monthlyPrice: '$4.500',
-                quarterlyPrice: '$12.150',
+                monthlyPrice: '$6.000',
+                quarterlyPrice: '$16.200',
                 planName: 'HBO Max Platino (4K)',
                 planDescription: 'Plan Platino con 4K UHD, Dolby Atmos, descargas ilimitadas y sin publicidad.',
                 hasPin: true,
@@ -732,12 +733,25 @@
                 detail: '',
                 iconClass: 'paramount-blue',
                 iconImage: 'assets/paramount.png',
-                monthlyPrice: '$2.500',
-                quarterlyPrice: '$6.750',
+                monthlyPrice: '$5.000',
+                quarterlyPrice: '$13.500',
                 planName: 'Paramount+',
                 planDescription: 'Plan 4K UHD, HDR10, Dolby Vision y descargas offline.',
                 hasPin: false,
                 pinNote: 'Cuenta compartida. Paramount+ no permite PIN por perfil, pero las contraseñas son actualizadas constantemente para grantizar seguridad.'
+            },
+            {
+                id: 'miotv',
+                name: 'MIO TV',
+                detail: '',
+                iconClass: 'miotv-green',
+                iconImage: 'assets/miotv.png',
+                monthlyPrice: '$7.000',
+                quarterlyPrice: '$18.900',
+                planName: 'MIO TV',
+                planDescription: 'Completá acá la descripción del plan de MIO TV.',
+                hasPin: true,
+                pinNote: 'Tu perfil es privado y está protegido con un PIN de acceso exclusivo. Solo vos podés entrar.'
             }
         ];
 
@@ -746,6 +760,12 @@
         // ═══════════════════════════════════════════════════════════════════════
 
         let activeCardId = null;
+
+        // Convierte un precio tipo "$16.500" en un número (16500) para poder ordenar
+        function parsePrice(priceStr) {
+            const digits = String(priceStr).replace(/[^\d]/g, '');
+            return digits ? parseInt(digits, 10) : 0;
+        }
 
         function getPinSection(platform) {
             if (platform.hasPin) {
@@ -777,7 +797,14 @@
 
         function renderPlatforms() {
             const container = document.getElementById('platformsList');
-            container.innerHTML = platformsData.map(platform => `
+
+            // Ordena siempre de mayor a menor precio mensual antes de renderizar.
+            // Si cambiás cualquier precio arriba, el orden se recalcula solo.
+            const sortedPlatforms = [...platformsData].sort(
+                (a, b) => parsePrice(b.monthlyPrice) - parsePrice(a.monthlyPrice)
+            );
+
+            container.innerHTML = sortedPlatforms.map(platform => `
                 <div class="platform-card" data-id="${platform.id}" onclick="toggleCard('${platform.id}')">
                     <div class="platform-icon ${platform.iconClass}">
                         <img src="${platform.iconImage}" alt="${platform.name}">
